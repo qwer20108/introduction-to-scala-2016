@@ -35,3 +35,30 @@ def fibonacciTail(n: Int, current: Int, next: Int):Int = {
 }
 
 fibonacciTail(5,0,1)
+
+
+// example in Functional Programming Principles in Scala course
+def summationNotTail(fun: Int => Int, start: Int, end: Int): Int =
+  if (start > end) 0 else fun(start) + summationNotTail(fun, start + 1, end)
+
+summationNotTail((x :Int) => x, 1, 10 )
+
+def summationTail(f: Int => Int)(a: Int, b: Int): Int = {
+  def loop(a: Int, acc: Int): Int = {
+    if (a > b) acc
+    else loop(a + 1, f(a) + acc)
+  }
+  loop(a , 0)
+}
+
+summationTail((x :Int) => x)(1, 10)
+
+def summationTail2(f: Int => Int, a: Int, b: Int): Int = {
+  def loop(a: Int, acc: Int): Int = {
+    if (a > b) acc
+    else loop(a + 1, f(a) + acc)
+  }
+  loop(a , 0)
+}
+
+summationTail2((x :Int) => x, 1, 10)
