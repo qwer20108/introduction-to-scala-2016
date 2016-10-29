@@ -27,6 +27,12 @@ def mapReduce(f: Int => Int, combine: (Int, Int) => Int, zero: Int) (a: Int, b: 
   if (a > b) zero
   else combine(f(a), mapReduce(f, combine, zero)(a + 1, b))
 }
+
+( 3 * 3 ) * mapReduce(x => x * x, (x, y) => x * y , 1)(4, 5)
+( 3 * 3 ) * (4 * 4) * mapReduce(x => x * x, (x, y) => x * y , 1)(5, 5)
+( 3 * 3 ) * (4 * 4) * ( 5 * 5) * mapReduce(x => x * x, (x, y) => x * y , 1)(6, 5)
+3 * 3 * 4 * 4 * 5 * 5 * 1 
+
 def fact(n: Int) = product(x => x)(1, n)
 fact(5)
 
